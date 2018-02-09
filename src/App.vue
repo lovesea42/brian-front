@@ -11,7 +11,7 @@ export default {
   name: 'App',
   methods:{
           getData(){
-            this.$http.get('http://localhost:8080/api/test').then(function(re){
+            this.$http.get('http://localhost:8001/api/test').then(function(re){
               alert(re.bodyText);
               },function(){
                   console.log("get email error")
