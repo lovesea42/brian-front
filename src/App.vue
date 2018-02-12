@@ -1,33 +1,10 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <button v-on:click="getData()">Say what</button>
-    <router-view/>
-  </div>
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </template>
-
-<script>
-export default {
-  name: 'App',
-  methods:{
-          getData(){
-            this.$http.get('http://47.94.129.154:8000/api/test').then(function(re){
-              alert(re.bodyText);
-              },function(){
-                  console.log("get email error")
-              })
-          }
-      }
-}
-</script>
-
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    @import "../static/css/main.css";
+    @import "../static/css/color-dark.css";     /*深色主题*/
+    /*@import "../static/css/theme-green/color-green.css";   浅绿色主题*/
 </style>
