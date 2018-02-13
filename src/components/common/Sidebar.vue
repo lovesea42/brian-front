@@ -32,11 +32,11 @@
                     {
                         icon: 'el-icon-search',
                         index: 'search',
-                        title: '查询',
+                        title: '搜索中心',
                         subs:[
                           {
                             index: 'booksearch',
-                            title: '优质书查询',
+                            title: '技术书查询',
                             icon: 'el-icon-document'
                           }
                         ]
