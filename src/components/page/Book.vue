@@ -105,7 +105,7 @@
 //                if(process.env.NODE_ENV === 'development'){
 //                    self.url = '/ms/table/list';
 //                };
-              self.$axios.get('http://localhost:8001/api/test').then(res=>{
+              self.$axios.get(process.env.API_ROOT + '/test').then(res=>{
                 console.log(res.data)
                 this.tableData = res.data
               })
