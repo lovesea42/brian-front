@@ -14,11 +14,14 @@ export default new Router({
       component:resolve => require(['../components/common/Home.vue'],resolve),
       children:[
         {
-          path: '/',
-          component: resolve => require(['../components/page/Readme.vue'], resolve)
+          path: '/dashboard',
+          component: resolve => require(['../components/page/dashboard/Dashboard.vue'], resolve)
         },{
           path: '/booksearch',
           component:resolve => require(['../components/page/Book.vue'],resolve)
+        },{
+          path: '/readme',
+          component: resolve => require(['../components/page/Readme.vue'], resolve)
         }
       ]
     }
