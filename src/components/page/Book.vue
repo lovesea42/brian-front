@@ -15,21 +15,21 @@
         </div>
         <el-table :data="data" stripe border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column prop="name" label="书名" sortable width="150">
+            <el-table-column prop="name" label="书名" sortable width="400">
             </el-table-column>
-            <el-table-column prop="author" label="作者" width="120">
+            <el-table-column prop="author" label="作者" width="200">
             </el-table-column>
-            <el-table-column prop="publisher" label="出版社" >
+            <el-table-column prop="publisher" label="出版社" width="200" >
             </el-table-column>
           <el-table-column  label="评分" width="180">
             <template slot-scope="scope">
               <el-rate
-                v-model=scope.row.rate
+                v-model=(scope.row.star/2.0).toFixed(1)
                 disabled
                 show-score
                 text-color="#ff9900"
                 score-template="{value}">
-                {{ scope.row.rate }}
+                {{ scope.row.star/2.0 }}
               </el-rate>
             </template>>
 

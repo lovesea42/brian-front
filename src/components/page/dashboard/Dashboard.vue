@@ -42,12 +42,14 @@
 </template>
 
 <script>
-  import PanelGroup from './components/PanelGroup'
+  /*import PanelGroup from './components/PanelGroup'*
+ /
+   */
 
   export default {
     name: 'dashboard',
     components: {
-      PanelGroup
+      //PanelGroup
     },
     data() {
     },
