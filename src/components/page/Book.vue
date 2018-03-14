@@ -17,6 +17,11 @@
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column prop="name" label="书名" sortable width="400">
             </el-table-column>
+          <el-table-column prop="img" label="图片" width="150" >
+              <template scope="scope">
+                      <img :src="scope.row.img" width="80%" height="150" />
+               </template>
+          </el-table-column>
             <el-table-column prop="author" label="作者" width="200">
             </el-table-column>
             <el-table-column prop="publisher" label="出版社" width="200" >
@@ -36,19 +41,21 @@
           </el-table-column>
           <el-table-column prop="price" sortable label="价格" width="100">
           </el-table-column>
-            <el-table-column label="操作" width="180">
-                <template scope="scope">
-                    <el-button size="small"
-                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button size="small" type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
+          <el-table-column prop="tags" label="标签" width="200" >
+          </el-table-column>
+          <!-- <el-table-column label="操作" width="180">
+               <template scope="scope">
+                   <el-button size="small"
+                           @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                   <el-button size="small" type="danger"
+                           @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+               </template>
+           </el-table-column>-->
         </el-table>
         <div class="pagination">
             <el-pagination
                     @current-change ="handleCurrentChange"
-                    layout="prev, pager, next"
+                    layout="total, sizes, prev, pager, next, jumper"
                     :current-page="currentPage"
                     :page-sizes="[5, 10, 20, 30]"
                     :page-size="pagesize"
@@ -88,7 +95,7 @@
                 start: 1,
 
                 //默认数据总数
-                totalCount: 1000
+                totalCount: 0
             }
         },
         created(){
@@ -98,23 +105,23 @@
             data(){
                 const self = this;
                 return self.tableData
-                return self.tableData.filter(function(d){
-                    let is_del = false;
-                    for (let i = 0; i < self.del_list.length; i++) {
-                        if(d.name === self.del_list[i].name){
-                            is_del = true;
-                            break;
-                        }
-                    }
-                    if(!is_del){
-                        if(d.address.indexOf(self.select_cate) > -1 &&
-                            (d.name.indexOf(self.select_word) > -1 ||
-                            d.address.indexOf(self.select_word) > -1)
-                        ){
-                            return d;
-                        }
-                    }
-                })
+//                return self.tableData.filter(function(d){
+//                    let is_del = false;
+//                    for (let i = 0; i < self.del_list.length; i++) {
+//                        if(d.name === self.del_list[i].name){
+//                            is_del = true;
+//                            break;
+//                        }
+//                    }
+//                    if(!is_del){
+//                        if(d.address.indexOf(self.select_cate) > -1 &&
+//                            (d.name.indexOf(self.select_word) > -1 ||
+//                            d.address.indexOf(self.select_word) > -1)
+//                        ){
+//                            return d;
+//                        }
+//                    }
+//                })
             }
         },
         methods: {
