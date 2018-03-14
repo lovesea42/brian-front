@@ -21,7 +21,7 @@
             </el-table-column>
             <el-table-column prop="publisher" label="出版社" width="200" >
             </el-table-column>
-          <el-table-column  label="评分" width="180">
+          <el-table-column  sortable    label="评分" width="180">
             <template slot-scope="scope">
               <el-rate
                 v-model=(scope.row.star/2.0).toFixed(1)
@@ -34,7 +34,7 @@
             </template>>
 
           </el-table-column>
-          <el-table-column prop="price" label="价格" width="100">
+          <el-table-column prop="price" sortable label="价格" width="100">
           </el-table-column>
             <el-table-column label="操作" width="180">
                 <template scope="scope">
@@ -49,7 +49,10 @@
             <el-pagination
                     @current-change ="handleCurrentChange"
                     layout="prev, pager, next"
-                    :total="1000">
+                    :current-page="currentPage"
+                    :page-sizes="[5, 10, 20, 30]"
+                    :page-size="pagesize"
+                    :total="totalCount">
             </el-pagination>
         </div>
     </div>
@@ -61,12 +64,31 @@
             return {
                 url: './static/vuetable.json',
                 tableData: [],
-                cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
                 select_word: '',
                 del_list: [],
-                is_search: false
+                is_search: false,
+                 //搜索条件
+                 criteria: '',
+
+                //下拉菜单选项
+                select: '',
+
+                //默认每页数据量
+                pagesize: 10,
+
+                //默认高亮行数据id
+                highlightId: -1,
+
+                //当前页码
+                currentPage: 1,
+
+                //查询的页码
+                start: 1,
+
+                //默认数据总数
+                totalCount: 1000
             }
         },
         created(){
@@ -97,15 +119,21 @@
         },
         methods: {
             handleCurrentChange(val){
-                this.cur_page = val;
-                this.getData();
+                this.currentPage = val;
+                this.getData(this.criteria,this.currentPage,this.pagesize);
             },
-            getData(){
+            getData(criteria,currentPage,pagesize){
                 let self = this;
+
+              self.$axios.get(process.env.API_ROOT + '/doubanbooknum').then(res=>{
+                console.log('totalnum = ' + res.data)
+                this.totalCount = res.data
+              })
+
 //                if(process.env.NODE_ENV === 'development'){
 //                    self.url = '/ms/table/list';
 //                };
-              self.$axios.get(process.env.API_ROOT + '/test').then(res=>{
+              self.$axios.get(process.env.API_ROOT + '/doubanbook?' + 'page=' + (this.currentPage-1) + "&&size=" + this.pagesize).then(res=>{
                 console.log(res.data)
                 this.tableData = res.data
               })
