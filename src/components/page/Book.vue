@@ -132,15 +132,20 @@
             getData(criteria,currentPage,pagesize){
                 let self = this;
 
-              self.$axios.get(process.env.API_ROOT + '/doubanbooknum').then(res=>{
+              let url_data = process.env.API_ROOT + '/doubanbook?' + 'page=' + (this.currentPage-1) + "&&size=" + this.pagesize;
+              let url_num = process.env.API_ROOT + '/doubanbooknum'
+
+              if(this.select_word.length > 0){
+                url_data += ("&&keyword="+this.select_word)
+                url_num += ("?keyword="+this.select_word)
+              }
+
+              self.$axios.get(url_num).then(res=>{
                 console.log('totalnum = ' + res.data)
                 this.totalCount = res.data
               })
 
-//                if(process.env.NODE_ENV === 'development'){
-//                    self.url = '/ms/table/list';
-//                };
-              self.$axios.get(process.env.API_ROOT + '/doubanbook?' + 'page=' + (this.currentPage-1) + "&&size=" + this.pagesize).then(res=>{
+              self.$axios.get(url_data).then(res=>{
                 console.log(res.data)
                 this.tableData = res.data
               })
