@@ -39,18 +39,16 @@
             </template>>
 
           </el-table-column>
-          <el-table-column prop="price" sortable label="价格" width="100">
+          <el-table-column prop="price" sortable label="价格" width="80">
           </el-table-column>
           <el-table-column prop="tags" label="标签" width="200" >
           </el-table-column>
-          <!-- <el-table-column label="操作" width="180">
+           <el-table-column label="操作" width="100">
                <template scope="scope">
                    <el-button size="small"
-                           @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                   <el-button size="small" type="danger"
-                           @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                           @click="openUrl(scope.$index, scope.row)">打开</el-button>
                </template>
-           </el-table-column>-->
+           </el-table-column>
         </el-table>
         <div class="pagination">
             <el-pagination
@@ -159,6 +157,10 @@
             },
             handleEdit(index, row) {
                 this.$message('编辑第'+(index+1)+'行');
+            },
+            openUrl(index, row) {
+               let url = this.tableData[index].url
+               window.open(url);
             },
             handleDelete(index, row) {
                 this.$message.error('删除第'+(index+1)+'行');
