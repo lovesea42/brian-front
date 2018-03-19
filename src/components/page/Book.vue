@@ -13,7 +13,7 @@
             <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
             <el-button type="primary" icon="search" @click="search">搜索</el-button>
         </div>
-        <el-table :data="data" stripe border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+        <el-table :data="data" stripe border style="width: 100%" ref="multipleTable">
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column prop="name" label="书名" sortable width="400">
             </el-table-column>
@@ -38,6 +38,8 @@
               </el-rate>
             </template>>
 
+          </el-table-column>
+          <el-table-column prop="comment" sortable label="评论数" width="80">
           </el-table-column>
           <el-table-column prop="price" sortable label="价格" width="80">
           </el-table-column>
