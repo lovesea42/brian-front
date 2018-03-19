@@ -14,8 +14,7 @@
             <el-button type="primary" icon="search" @click="search">搜索</el-button>
         </div>
         <el-table :data="data" stripe border style="width: 100%" ref="multipleTable">
-            <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column prop="name" label="书名" sortable width="400">
+            <el-table-column prop="name" label="书名" sortable width="320">
             </el-table-column>
           <el-table-column prop="img" label="图片" width="150" >
               <template scope="scope">
